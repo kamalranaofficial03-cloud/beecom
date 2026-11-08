@@ -4,12 +4,20 @@ server:
     session:
       cookie:
         name: "AUTHSERVERSESSIONID"
-
+app:
+  datasource:
+    provider: rd
 logging:
   level:
     org.springframework.security: trace
 
 spring:
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yaml
+  datasource:
+    username: root
+    password: kamalrana03@
+    url: jdbc:mysql://localhost:3306/kamaldb
   security:
     oauth2:
       authorizationserver:

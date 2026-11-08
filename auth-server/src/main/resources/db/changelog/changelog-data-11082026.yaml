@@ -1,0 +1,100 @@
+databaseChangeLog:
+
+  # Insert roles
+  - changeSet:
+      id: insert-initial-roles
+      author: developer
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: role
+                  value: user
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: role
+                  value: admin
+
+  # Insert permissions
+  - changeSet:
+      id: insert-initial-permissions
+      author: developer
+      changes:
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: permission
+                  value: read
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: permission
+                  value: write
+
+  # Assign permissions to roles
+  - changeSet:
+      id: assign-permissions-to-roles
+      author: developer
+      changes:
+        # user -> read
+        - insert:
+            tableName: roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  valueNumeric: 1
+              - column:
+                  name: permission_id
+                  valueNumeric: 1
+
+        # user -> write
+        - insert:
+            tableName: roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  valueNumeric: 1
+              - column:
+                  name: permission_id
+                  valueNumeric: 2
+
+        # admin -> read
+        - insert:
+            tableName: roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  valueNumeric: 2
+              - column:
+                  name: permission_id
+                  valueNumeric: 1
+
+        # admin -> write
+        - insert:
+            tableName: roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  valueNumeric: 2
+              - column:
+                  name: permission_id
+                  valueNumeric: 2

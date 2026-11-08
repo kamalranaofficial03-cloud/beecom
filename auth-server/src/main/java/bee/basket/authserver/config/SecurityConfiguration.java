@@ -3,6 +3,7 @@ package bee.basket.authserver.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,9 +36,13 @@ public class SecurityConfiguration {
 
 		var springAuthorizationServer = OAuth2AuthorizationServerConfigurer.authorizationServer();
 		http
+				.csrf(csrf -> csrf
+						.ignoringRequestMatchers("/user")
+				)
 			.securityMatcher(springAuthorizationServer.getEndpointsMatcher())
 			.authorizeHttpRequests((authorize) ->
-				authorize.anyRequest().authenticated()
+					authorize.requestMatchers(HttpMethod.POST,"/user").permitAll()
+				.anyRequest().authenticated()
 			)
 			.exceptionHandling((exceptions) -> exceptions
 				.defaultAuthenticationEntryPointFor(
@@ -65,7 +70,11 @@ public class SecurityConfiguration {
 	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
 			throws Exception {
 		http
+				.csrf(csrf -> csrf
+						.ignoringRequestMatchers("/user")
+				)
 			.authorizeHttpRequests((authorize) -> authorize
+					.requestMatchers(HttpMethod.POST,"/user").permitAll()
 				.requestMatchers("/login", "/assets/**").permitAll()
 				.anyRequest().authenticated()
 			)

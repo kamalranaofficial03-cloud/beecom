@@ -2,6 +2,7 @@ package bee.basket.authserver.event;
 
 import java.util.Base64;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -13,6 +14,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
 
 @Component
+@ConditionalOnProperty(prefix = "app.datasource", name="provider", havingValue = "ldap", matchIfMissing =false)
 public class LdapAuthenticationEventListener {
 
 	private final UserDetailsManager userDetailsManager;

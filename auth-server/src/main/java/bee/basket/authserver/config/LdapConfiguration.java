@@ -1,5 +1,6 @@
 package bee.basket.authserver.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ldap.core.ContextSource;
@@ -14,6 +15,7 @@ import org.springframework.security.ldap.userdetails.LdapUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 @Configuration
+@ConditionalOnProperty(prefix = "app.datasource", name="provider", havingValue = "ldap", matchIfMissing =false)
 public class LdapConfiguration {
 
 	@Bean

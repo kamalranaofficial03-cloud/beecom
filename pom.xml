@@ -20,5 +20,15 @@
     <module>cashcard-service</module>
     <module>gateway</module>
     <module>purchase-service</module>
+    <module>common-util</module>
   </modules>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>bee.basket</groupId>
+        <artifactId>common-util</artifactId>
+        <version>${version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

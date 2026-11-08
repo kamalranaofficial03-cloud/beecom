@@ -1,0 +1,7 @@
+package bee.basket.commonutil.exception;
+
+public class UsernameAlreadyExistException extends Exception{
+    public UsernameAlreadyExistException(String message) {
+        super(message);
+    }
+}
