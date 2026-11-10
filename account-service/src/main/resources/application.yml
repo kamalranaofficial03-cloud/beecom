@@ -6,7 +6,8 @@ logging:
     org.springframework.security: trace
 
 spring:
-
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-account-master.yaml
   datasource:
     username: root
     password: kamalrana03@
