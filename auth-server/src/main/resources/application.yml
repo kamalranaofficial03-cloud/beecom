@@ -39,11 +39,6 @@ spring:
                 - "openid"
                 - "profile"
                 - "email"
-                - "address"
-                - "phone"
-                - "cashcard:read"
-                - "cashcard:write"
-                - "purchase:read"
             require-authorization-consent: true
           gateway-client:
             registration:
@@ -54,13 +49,13 @@ spring:
               authorization-grant-types:
                 - "client_credentials"
               scopes:
-                - "cashcard:read"
-                - "cashcard:write"
-                - "purchase:read"
-          cashcard-client:
+                - "openid"
+                - "email"
+                - "profile"
+          account-client:
             registration:
-              client-id: "cashcard-client"
-              client-secret: "{noop}cashcard"
+              client-id: "account-client"
+              client-secret: "{noop}account"
               client-authentication-methods:
                 - "client_secret_basic"
               authorization-grant-types:
@@ -68,15 +63,15 @@ spring:
                 - "refresh_token"
                 - "urn:ietf:params:oauth:grant-type:token-exchange"
               redirect-uris:
-                - "http://localhost:8080/authorize/cashcard-client"
+                - "http://localhost:8080/authorize/account-client"
               scopes:
-                - "cashcard:read"
-                - "cashcard:write"
-            require-authorization-consent: true
-          purchase-client:
+                - "openid"
+                - "email"
+                - "profile"
+          order-client:
             registration:
-              client-id: "purchase-client"
-              client-secret: "{noop}purchase"
+              client-id: "order-client"
+              client-secret: "{noop}order"
               client-authentication-methods:
                 - "client_secret_basic"
               authorization-grant-types:
@@ -84,29 +79,8 @@ spring:
                 - "refresh_token"
                 - "urn:ietf:params:oauth:grant-type:token-exchange"
               redirect-uris:
-                - "http://localhost:8080/authorize/purchase-client"
+                - "http://localhost:8080/authorize/order-client"
               scopes:
-                - "purchase:read"
-            require-authorization-consent: true
-      client:
-        registration:
-          auth0:
-            client-name: "Auth0"
-            client-id: "${auth0.client-id}"
-            client-secret: ${auth0.client-secret}
-            client-authentication-method: "client_secret_post"
-            authorization-grant-type: "authorization_code"
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope:
-              - "openid"
-              - "profile"
-              - "email"
-        provider:
-          auth0:
-            issuer-uri: "${auth0.base-url}/"
-            user-name-attribute: email
-
-auth0:
-  base-url: ${AUTH0_BASE_URL:https://auth0.us.auth0.com}
-  client-id: ${AUTH0_CLIENT_ID:my-client-id}
-  client-secret: ${AUTH0_CLIENT_SECRET:my-client-secret}
+                - "openid"
+                - "email"
+                - "profile"

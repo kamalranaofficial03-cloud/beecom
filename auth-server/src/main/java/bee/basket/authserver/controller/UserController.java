@@ -1,10 +1,11 @@
 package bee.basket.authserver.controller;
 
 import bee.basket.commonutil.exception.UsernameAlreadyExistException;
-import bee.basket.commonutil.model.ResponseBody;
+import bee.basket.commonutil.contract.ResponseBody;
 import bee.basket.commonutil.model.request.UserRM;
-import bee.basket.commonutil.model.response.User;
-import bee.basket.commonutil.service.UserService;
+import bee.basket.commonutil.model.User;
+import bee.basket.commonutil.model.response.UserRes;
+import bee.basket.commonutil.contract.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -20,9 +21,9 @@ public class UserController {
 
     @PostMapping
     ResponseEntity<ResponseBody<String>> create(@RequestBody UserRM user) throws UsernameAlreadyExistException {
-        User<String> result = userService.create(user);
-        URI location = URI.create("/user/" + result.username());
-        return ResponseEntity.created(location).body(result);
+        User responseBody = userService.create(user.body());
+        URI location = URI.create("/user/" + responseBody.username());
+        return ResponseEntity.created(location).body(new UserRes<>(responseBody, "201 created, successfully."));
     }
 
     @ExceptionHandler(UsernameAlreadyExistException.class)

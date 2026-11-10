@@ -1,12 +1,14 @@
 package bee.basket.authserver.entity;
 
+import bee.basket.commonutil.contract.ToModel;
+import bee.basket.commonutil.model.User;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="users")
-public class UserEntity extends Audit {
+public class UserEntity extends Audit implements ToModel<User> {
     @Column(name="username",unique = true, nullable = false)
     private String username;
     @Column(name="password",nullable = false)
@@ -64,5 +66,17 @@ public class UserEntity extends Audit {
 
     public void setRole(Set<RoleEntity> role) {
         this.role = role;
+    }
+
+    public User model(){
+        return new User(this.username, password,enabled,new HashSet<>());
+    }
+
+    public static UserEntity create(User user){
+        UserEntity newInstance = new UserEntity();
+        newInstance.setPassword(user.password());
+        newInstance.setUsername(user.username());
+        newInstance.setEnabled(user.enabled());
+        return newInstance;
     }
 }

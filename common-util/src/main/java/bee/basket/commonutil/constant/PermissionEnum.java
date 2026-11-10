@@ -1,6 +1,6 @@
 package bee.basket.commonutil.constant;
 
-import bee.basket.commonutil.service.Value;
+import bee.basket.commonutil.contract.Value;
 
 public enum PermissionEnum implements Value<String> {
     READ("read"), WRITE("write");

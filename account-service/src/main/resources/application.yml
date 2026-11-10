@@ -1,0 +1,22 @@
+server:
+  port: 8090
+
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+
+  datasource:
+    username: root
+    password: kamalrana03@
+    url: jdbc:mysql://localhost:3306/kamaldb
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9000"
+          audiences:
+            - "oidc-client"
+            - "gateway-client"
+            - "cashcard-client"

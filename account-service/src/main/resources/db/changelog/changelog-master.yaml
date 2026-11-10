@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changelog-account-schema-11102026.yaml
+  - include:
+      file: db/changelog/changelog-account-data-11102026.yaml

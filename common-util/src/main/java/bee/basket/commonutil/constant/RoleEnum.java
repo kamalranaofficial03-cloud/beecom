@@ -1,6 +1,6 @@
 package bee.basket.commonutil.constant;
 
-import bee.basket.commonutil.service.Value;
+import bee.basket.commonutil.contract.Value;
 
 public enum RoleEnum implements Value<String> {
     USER("user"), ADMIN("admin");

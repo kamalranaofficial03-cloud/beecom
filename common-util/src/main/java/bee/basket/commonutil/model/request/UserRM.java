@@ -1,8 +1,8 @@
 package bee.basket.commonutil.model.request;
 
-import bee.basket.commonutil.model.Role;
+import bee.basket.commonutil.model.User;
 
-import java.util.Set;
-
-public record UserRM(String username, String password, String enabled, Set<Role> roles) {
+public record UserRM(User body) {
 }
+
+

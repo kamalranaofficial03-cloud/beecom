@@ -6,14 +6,12 @@ import bee.basket.authserver.entity.RoleEntity;
 import bee.basket.authserver.entity.UserEntity;
 import bee.basket.commonutil.constant.RoleEnum;
 import bee.basket.commonutil.exception.UsernameAlreadyExistException;
-import bee.basket.commonutil.model.request.UserRM;
-import bee.basket.commonutil.model.response.User;
-import bee.basket.commonutil.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
+import bee.basket.commonutil.model.User;
+import bee.basket.commonutil.contract.UserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
+
 import java.util.Set;
 
 @Service
@@ -29,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(UserRM user) throws UsernameAlreadyExistException {
+    public User create(User user) throws UsernameAlreadyExistException {
         if(checkIfExist(user.username())){
             throw new UsernameNotFoundException("user already exist");
         }
@@ -41,7 +39,7 @@ public class UserServiceImpl implements UserService {
         RoleEntity userRole = this.roleDao.findByRole(RoleEnum.USER.value());
         entity.setRole(Set.of(userRole));
         entity = this.userDao.save(entity);
-        return new User(entity.getUsername(),null, user.enabled(),new HashSet<>(),"user created successfully.");
+        return entity.model();
     }
 
     @Override
