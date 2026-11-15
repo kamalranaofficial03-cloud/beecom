@@ -12,8 +12,5 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @ConditionalOnProperty(prefix = "app.datasource", name="provider", havingValue = "rd", matchIfMissing =true)
 public class RDDataConfig {
 
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+
 }

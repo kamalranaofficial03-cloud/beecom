@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import bee.basket.cashcard.entity.AccountEntity;
 import bee.basket.cashcard.entity.AddressEntity;
 import bee.basket.commonutil.model.Account;
-import bee.basket.commonutil.contract.AccountService;
+import bee.basket.commonutil.contract.service.AccountService;
 import org.springframework.stereotype.Service;
 
 @Service

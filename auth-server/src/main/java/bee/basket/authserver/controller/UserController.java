@@ -5,7 +5,7 @@ import bee.basket.commonutil.contract.ResponseBody;
 import bee.basket.commonutil.model.request.UserRM;
 import bee.basket.commonutil.model.User;
 import bee.basket.commonutil.model.response.UserRes;
-import bee.basket.commonutil.contract.UserService;
+import bee.basket.commonutil.contract.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;

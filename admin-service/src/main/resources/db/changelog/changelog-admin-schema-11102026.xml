@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1794315715567-1" author="kamalranaofficial03-cloud">
+        <createTable tableName="product_features">
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="images" type="VARCHAR(255)"/>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1794315715567-2" author="kamalranaofficial03-cloud">
+        <createTable tableName="products">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_products"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME(6)"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME(6)"/>
+            <column name="product_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="variant_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="images" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1794315715567-3" author="Surya Parsad">
+        <addUniqueConstraint columnNames="product_id, variant_id" constraintName="uk_product_variant"
+                             tableName="products"/>
+    </changeSet>
+    <changeSet id="1794315715567-4" author="Surya Parsad">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_features"
+                                 constraintName="FK_PRODUCT_FEATURES_ON_PRODUCT" referencedColumnNames="id"
+                                 referencedTableName="products"/>
+    </changeSet>
+
+</databaseChangeLog>

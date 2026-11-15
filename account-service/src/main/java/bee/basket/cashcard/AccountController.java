@@ -3,7 +3,7 @@ package bee.basket.cashcard;
 import bee.basket.commonutil.model.Account;
 import bee.basket.commonutil.model.request.AccountRM;
 import bee.basket.commonutil.model.response.AccountRes;
-import bee.basket.commonutil.contract.AccountService;
+import bee.basket.commonutil.contract.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.Authentication;

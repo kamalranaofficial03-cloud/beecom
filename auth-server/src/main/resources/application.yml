@@ -1,9 +1,5 @@
 server:
   port: 9000
-  servlet:
-    session:
-      cookie:
-        name: "AUTHSERVERSESSIONID"
 app:
   datasource:
     provider: rd
@@ -18,69 +14,3 @@ spring:
     username: root
     password: kamalrana03@
     url: jdbc:mysql://localhost:3306/kamaldb
-  security:
-    oauth2:
-      authorizationserver:
-        client:
-          oidc-client:
-            registration:
-              client-id: "oidc-client"
-              client-secret: "{noop}oidc"
-              client-authentication-methods:
-                - "client_secret_basic"
-              authorization-grant-types:
-                - "authorization_code"
-                - "refresh_token"
-              redirect-uris:
-                - "http://localhost:8080/login/oauth2/code/oidc-client"
-              post-logout-redirect-uris:
-                - "http://localhost:8080/login?logout"
-              scopes:
-                - "openid"
-                - "profile"
-                - "email"
-            require-authorization-consent: true
-          gateway-client:
-            registration:
-              client-id: "gateway-client"
-              client-secret: "{noop}gateway"
-              client-authentication-methods:
-                - "client_secret_basic"
-              authorization-grant-types:
-                - "client_credentials"
-              scopes:
-                - "openid"
-                - "email"
-                - "profile"
-          account-client:
-            registration:
-              client-id: "account-client"
-              client-secret: "{noop}account"
-              client-authentication-methods:
-                - "client_secret_basic"
-              authorization-grant-types:
-                - "authorization_code"
-                - "refresh_token"
-                - "urn:ietf:params:oauth:grant-type:token-exchange"
-              redirect-uris:
-                - "http://localhost:8080/authorize/account-client"
-              scopes:
-                - "openid"
-                - "email"
-                - "profile"
-          order-client:
-            registration:
-              client-id: "order-client"
-              client-secret: "{noop}order"
-              client-authentication-methods:
-                - "client_secret_basic"
-              authorization-grant-types:
-                - "authorization_code"
-                - "refresh_token"
-                - "urn:ietf:params:oauth:grant-type:token-exchange"
-              redirect-uris:
-                - "http://localhost:8080/authorize/order-client"
-              scopes:
-                - "openid"
-                - "email"
-                - "profile"

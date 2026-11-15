@@ -7,7 +7,7 @@ import bee.basket.authserver.entity.UserEntity;
 import bee.basket.commonutil.constant.RoleEnum;
 import bee.basket.commonutil.exception.UsernameAlreadyExistException;
 import bee.basket.commonutil.model.User;
-import bee.basket.commonutil.contract.UserService;
+import bee.basket.commonutil.contract.service.UserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
