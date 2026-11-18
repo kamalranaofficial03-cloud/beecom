@@ -1,5 +1,14 @@
 server:
   port: 8090
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Defaults target a local (non-Docker) run on the host. Inside Docker
+          # these are overridden by env vars in docker-compose.yml to use the
+          # auth-server service hostname on the demo-network.
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
+          issuer-uri: http://localhost:9000
 
 logging:
   level:

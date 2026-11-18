@@ -1,0 +1,19 @@
+server:
+  port: 9000
+app:
+  datasource:
+    provider: rd
+  bee:
+    sso:
+      enabled: true
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yaml
+  datasource:
+    username: root
+    password: kamalrana03@
+    url: jdbc:mysql://localhost:3306/kamaldb

@@ -26,6 +26,8 @@ public class AccountServiceImp implements AccountService {
 		return account.model();
 	}
 
+
+
 	@Override
 	public Account addAccount(Account account) {
 		AccountEntity result = this.accountRepository.findByUsername(account.username());

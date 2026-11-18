@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1794750728577-11" author="Surya Parsad">
+        <createTable tableName="roles">
+            <column name="id" type="binary(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME(6)"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME(6)"/>
+            <column name="role" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1794750728577-12" author="Surya Parsad">
+        <createTable tableName="roles_permissions">
+            <column name="permission_id" type="binary(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles_permissions"/>
+            </column>
+            <column name="role_id" type="binary(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles_permissions"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1794750728577-13" author="Surya Parsad">
+        <addUniqueConstraint columnNames="role" constraintName="uc_roles_role" tableName="roles"/>
+    </changeSet>
+    <changeSet id="1794750728577-14" author="Surya Parsad">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="roles_permissions"
+                                 constraintName="fk_rolper_on_permission_entity" referencedColumnNames="id"
+                                 referencedTableName="permissions"/>
+    </changeSet>
+    <changeSet id="1794750728577-15" author="Surya Parsad">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="roles_permissions"
+                                 constraintName="fk_rolper_on_role_entity" referencedColumnNames="id"
+                                 referencedTableName="roles"/>
+    </changeSet>
+    <changeSet id="1794750728577-16" author="Surya Parsad">
+        <insert tableName="roles">
+            <column name="id"
+                    valueComputed="UNHEX(REPLACE('00000000-0000-0000-0000-000000000001', '-', ''))"/>
+            <column name="role" value="user"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="id"
+                    valueComputed="UNHEX(REPLACE('00000000-0000-0000-0000-000000000002', '-', ''))"/>
+            <column name="role" value="admin"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

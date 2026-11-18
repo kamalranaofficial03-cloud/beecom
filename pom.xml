@@ -18,7 +18,7 @@
     <spring-boot.version>4.1.0</spring-boot.version>
   </properties>
   <modules>
-    <module>auth-server</module>
+    <module>identity-server</module>
     <module>account-service</module>
     <module>gateway</module>
     <module>admin-service</module>

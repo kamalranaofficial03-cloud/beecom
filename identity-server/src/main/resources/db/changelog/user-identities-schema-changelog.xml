@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1794749821907-6" author="Kamal Rana">
+        <createTable tableName="user_identities">
+            <column name="id" type="binary(16)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_identities"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME(6)"/>
+            <column name="last_modified_by" type="VARCHAR(255)"/>
+            <column name="last_modified_date" type="DATETIME(6)"/>
+            <column name="provider" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider_user_id" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="email_verified" type="BOOLEAN"/>
+            <column name="phone_verified" type="BOOLEAN"/>
+            <column name="user_id" type="binary(16)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1794749821907-7" author="Kamal Rana">
+        <addUniqueConstraint columnNames="provider, provider_user_id" constraintName="uk_provider_provider_user"
+                             tableName="user_identities"/>
+    </changeSet>
+    <changeSet id="1794749821907-8" author="Kamal Rana">
+        <addUniqueConstraint columnNames="username" constraintName="uk_username" tableName="user_identities"/>
+    </changeSet>
+    <changeSet id="1794749821907-9" author="Kamal Rana">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_identities"
+                                 constraintName="FK_USER_IDENTITIES_ON_USER" referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="1794749821907-10" author="Kamal Rana">
+        <renameColumn tableName="user_identities" oldColumnName="password" newColumnName="password_hash"
+                      columnDataType="VARCHAR(255)"/>
+        <addColumn tableName="user_identities">
+            <column name="enabled" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <dropUniqueConstraint tableName="user_identities" constraintName="uk_username"/>
+        <addUniqueConstraint columnNames="provider, username" constraintName="uk_provider_username"
+                             tableName="user_identities"/>
+    </changeSet>
+
+</databaseChangeLog>

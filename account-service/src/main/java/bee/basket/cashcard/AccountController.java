@@ -26,7 +26,7 @@ public class AccountController {
     }
 
     @GetMapping("/{username}")
-    @PostAuthorize("returnObject.body.owner == authentication.name")
+    @PostAuthorize("returnObject.body.username == authentication.name")
     public ResponseEntity<AccountRes<?>> findById(@PathVariable String username) {
         Account account = this.accountService.findAccount(username);
         return ResponseEntity.ok(new AccountRes(account, "201 created,Successful."));
