@@ -1,6 +1,6 @@
 package bee.basket.iam.dao;
 
-import bee.basket.identityserver.entity.UserIdentity;
+import bee.basket.iam.entity.UserIdentity;
 import bee.basket.commonutil.constant.IdentityProvider;
 import org.springframework.data.jpa.repository.JpaRepository;
 

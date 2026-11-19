@@ -1,4 +1,4 @@
-package bee.basket.identityserver;
+package bee.basket.iam;
 
 import org.junit.jupiter.api.Test;
 

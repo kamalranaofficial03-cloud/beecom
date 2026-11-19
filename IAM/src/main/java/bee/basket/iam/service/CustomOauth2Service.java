@@ -1,11 +1,11 @@
 package bee.basket.iam.service;
 
-import bee.basket.identityserver.dao.RoleDao;
-import bee.basket.identityserver.dao.UserDao;
-import bee.basket.identityserver.dao.UserIdentityDao;
-import bee.basket.identityserver.entity.RoleEntity;
-import bee.basket.identityserver.entity.UserEntity;
-import bee.basket.identityserver.entity.UserIdentity;
+import bee.basket.iam.dao.RoleDao;
+import bee.basket.iam.dao.UserDao;
+import bee.basket.iam.dao.UserIdentityDao;
+import bee.basket.iam.entity.RoleEntity;
+import bee.basket.iam.entity.UserEntity;
+import bee.basket.iam.entity.UserIdentity;
 import bee.basket.commonutil.constant.IdentityProvider;
 import bee.basket.commonutil.constant.RoleEnum;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

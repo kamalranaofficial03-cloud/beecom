@@ -1,7 +1,7 @@
 package bee.basket.iam.service;
 
-import bee.basket.identityserver.dao.UserIdentityDao;
-import bee.basket.identityserver.entity.UserIdentity;
+import bee.basket.iam.dao.UserIdentityDao;
+import bee.basket.iam.entity.UserIdentity;
 import bee.basket.commonutil.constant.IdentityProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.core.userdetails.User;

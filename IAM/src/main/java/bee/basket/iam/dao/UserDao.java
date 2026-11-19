@@ -1,7 +1,7 @@
 package bee.basket.iam.dao;
 
 
-import bee.basket.identityserver.entity.UserEntity;
+import bee.basket.iam.entity.UserEntity;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.jpa.repository.JpaRepository;
 

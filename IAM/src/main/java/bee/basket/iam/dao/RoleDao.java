@@ -1,6 +1,6 @@
 package bee.basket.iam.dao;
 
-import bee.basket.identityserver.entity.RoleEntity;
+import bee.basket.iam.entity.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
