@@ -21,7 +21,6 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
-import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.OAuth2TokenType;
@@ -85,7 +84,7 @@ public class SecurityConfig {
                             .permitAll()
                     )
                     .authorizeHttpRequests(authorize -> authorize
-                            .requestMatchers("/login","/users", "/static/assets/**", "/assets/**", "/webjars/**", "/.well-known/**", "/error/**").permitAll()
+                            .requestMatchers("/login", "/users", "/static/assets/**", "/assets/**", "/webjars/**", "/.well-known/**", "/error/**").permitAll()
                     );
 
             clientRegistrationRepositoryProvider.ifAvailable(ignored ->
@@ -229,8 +228,6 @@ public class SecurityConfig {
                             .toList();
                     context.getClaims().claim("roles", roles);
                 }
-                // Add department claim based on authenticated user
-                String username = context.getPrincipal().getName();
                 String permission = "write,read";
                 context.getClaims().claim("permission", permission);
             }
