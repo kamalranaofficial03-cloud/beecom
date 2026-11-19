@@ -128,7 +128,8 @@ public class SecurityConfig {
     ) {
         return args -> {
             for (RegisteredClient client : defaultRegisteredClients(passwordEncoder)) {
-                if (registeredClientRepository.findByClientId(client.getClientId()) == null) {
+                RegisteredClient existingClient = registeredClientRepository.findByClientId(client.getClientId());
+                if (existingClient == null) {
                     registeredClientRepository.save(client);
                 }
             }
@@ -143,8 +144,8 @@ public class SecurityConfig {
                 .redirectUri("http://localhost:4200/callback")
                 .postLogoutRedirectUri("http://localhost:4200")
                 .clientSettings(ClientSettings.builder()
-                        .requireProofKey(true)
-                        .requireAuthorizationConsent(true)
+                        .requireProofKey(false)
+                        .requireAuthorizationConsent(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofMinutes(15))
