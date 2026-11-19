@@ -8,3 +8,5 @@ databaseChangeLog:
       file: db/changelog/users-schema-changelog.xml
   - include:
       file: db/changelog/user-identities-schema-changelog.xml
+  - include:
+      file: db/changelog/registered-clients-schema-changelog.xml

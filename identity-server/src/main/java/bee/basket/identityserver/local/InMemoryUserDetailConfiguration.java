@@ -1,4 +1,4 @@
-package bee.basket.identityserver.conditionalbean;
+package bee.basket.identityserver.local;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
-@ConditionalOnProperty(prefix = "app.userdetails", name="inmemory", havingValue = "true", matchIfMissing =false)
+@ConditionalOnProperty(prefix = "app.datasource", name="provider", havingValue = "inmemory", matchIfMissing =false)
 public class InMemoryUserDetailConfiguration {
 
     @Bean

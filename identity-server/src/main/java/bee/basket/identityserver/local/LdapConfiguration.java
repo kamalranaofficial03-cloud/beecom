@@ -1,4 +1,4 @@
-package bee.basket.identityserver.conditionalbean;
+package bee.basket.identityserver.local;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
